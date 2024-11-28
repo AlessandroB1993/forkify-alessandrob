@@ -126,6 +126,10 @@ const controlAddRecipe = async function (newRecipe) {
   }, MODAL_CLOSE_SEC * 1300);
 }
 
+const newFeature = () => {
+  console.log('Welcome to the application!');
+}
+
 const init = function () {
   bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);
@@ -134,7 +138,7 @@ const init = function () {
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
   addRecipeView.addHandlerUpload(controlAddRecipe);
-  console.log('Welcome');
+  newFeature();
 };
 init();
 
@@ -162,7 +166,6 @@ init();
 
 
 
-
-// const events = ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, controlRecipes)); 
+// const events = ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, controlRecipes));
 // window.addEventListener('hashchange', controlRecipes);
 // window.addEventListener('load', controlRecipes);
