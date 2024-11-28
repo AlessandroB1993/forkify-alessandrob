@@ -29,20 +29,19 @@ export default class View {
     const newMarkup = this._generateMarkup();
 
 
-    const newDOM = document.createRange().createContextualFragment(newMarkup); // converts string into virtual DOM obj (lives on the memory)
+    const newDOM = document.createRange().createContextualFragment(newMarkup); 
     const newElements = Array.from(newDOM.querySelectorAll('*')); // Return array from a node list
     const curElements = Array.from(this._parentEl.querySelectorAll('*'));
     newElements.forEach((newEl, i) => {
       const curEl = curElements[i];
 
       // Update changed TEXT
-      if (!newEl.isEqualNode(curEl) && newEl.firstChild?.nodeValue.trim() !== '') { // isEqualNode compares the content of the nodes (boolean)
-        curEl.textContent = newEl.textContent; // ^ we are avoiding overwriting a firstChild with 'null'
+      if (!newEl.isEqualNode(curEl) && newEl.firstChild?.nodeValue.trim() !== '') { 
+        curEl.textContent = newEl.textContent; 
       }
 
       // Update changed ATTRIBUTES
       if (!newEl.isEqualNode(curEl)) {
-        // console.log(newEl, newEl.attributes);
         Array.from(newEl.attributes).forEach(attr => curEl.setAttribute(attr.name, attr.value));
   }
 });

@@ -32,13 +32,12 @@ class AddRecipeView extends View {
         this._window.classList.add('hidden');
     }
 
-    // So we can bind the this kw when we call this method in the event listener
+    // So we can bind the 'this' kw when we call this method in the event listener
     toggleWindow() {
         this._overlay.classList.toggle('hidden');
         this._window.classList.toggle('hidden');
     }
 
-    // We don't need the controller, there's just a window to show/hide 
     _addHandlerShowWindow() {
         this._btnOpen.addEventListener('click', this.toggleWindow.bind(this));
     }
@@ -52,8 +51,8 @@ class AddRecipeView extends View {
         this._parentEl.addEventListener('submit', function (e) {
             e.preventDefault();
 
-            const dataArr = [...new FormData(this)]; // Returns an obj to spread into an array
-            const data = Object.fromEntries(dataArr); // The opposite of the entries method available on arrays
+            const dataArr = [...new FormData(this)]; 
+            const data = Object.fromEntries(dataArr); 
             handler(data);
         });
     }

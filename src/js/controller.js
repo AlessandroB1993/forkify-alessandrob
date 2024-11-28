@@ -46,14 +46,12 @@ const controlSearchResults = async function () {
     await model.loadSearchResults(query);
 
     // 3. Render results
-    // resultsView.render(model.state.search.results);
     resultsView.render(model.getSearchResultsPage());
 
     // 4. Render the initial pagination buttons
     paginationView.render(model.state.search);
 
     // 5. Show sort button
-    // resultsView.showSortBtn();
   } catch (err) {
     console.log(err)
   }
@@ -71,7 +69,6 @@ const controlServings = function (newServings) {
   model.updateServings(newServings);
 
   // Update the recipe view
-  // recipeView.render(model.state.recipe);
   recipeView.update(model.state.recipe);
 };
 
@@ -110,7 +107,6 @@ const controlAddRecipe = async function (newRecipe) {
 
     // Change ID in URL
     window.history.pushState(null, '', `#${model.state.recipe.id}`);
-    // window.history.back();
 
     // Close form window
     setTimeout(() => {
@@ -137,31 +133,3 @@ const init = function () {
   console.log('Added feature to the console');
 };
 init();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const events = ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, controlRecipes));
-// window.addEventListener('hashchange', controlRecipes);
-// window.addEventListener('load', controlRecipes);
