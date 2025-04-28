@@ -1,6 +1,5 @@
 import { async } from 'regenerator-runtime';
 import { API_URL, RES_PER_PAGE, INITIAL_PAGE, KEY } from './config.js';
-// import { getJSON, sendJSON } from './helpers.js';
 import { AJAX } from './helpers.js';
 
 export const state = {
@@ -29,14 +28,11 @@ const createRecipeObject = function (data) {
     };
 }
 
-
-// This f will just change the state object (not pure)
 export const loadRecipe = async function (id) {
     try {
         const data = await AJAX(`${API_URL}${id}?key=${KEY}`);
         state.recipe = createRecipeObject(data);
 
-        // We check if the new research is already in the bookmarks array, if so we restore the bookmarked property
         if (state.bookmarks.some(bookmark => bookmark.id === id))
             state.recipe.bookmarked = true;
         else
@@ -113,14 +109,6 @@ export const deleteBookmark = function (id) {
     persistBookmarks();
 }
 
-init();
-
-// For debugging
-const clearBookmarks = function () {
-    localStorage.clear('bookmarks');
-};
-// clearBookmarks();
-
 const filterIngredients = function (arr, index) {
     ing = arr.filter(ing => ing[0].startsWith(`ingredient-${index}`) && ing[1] !== '')
         .map(ing => ing[1]);
@@ -152,5 +140,8 @@ export const uploadRecipe = async function (newRecipe) {
     addBookmark(state.recipe);
 
 };
+
+init();
+
 
 
